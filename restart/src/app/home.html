@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Home</title>
+  <link rel="stylesheet" href="../assets/site.css" />
+</head>
+<body>
+<script src="../assets/guard.js"></script>
+
+<header class="topbar">
+  <nav class="nav">
+    <a class="brand" href="./home.html">
+      <span>주영이를 위한 페이지</span>
+      <span class="badge">love</span>
+    </a>
+
+    <div class="nav-links">
+      <a class="active" href="./home.html">Home</a>
+      <a href="Crossroads.html">Crossroads</a>
+      <a href="Our%20Shelter.html">Our Shelter</a>
+      <a href="./letter.html">Letter</a>
+    </div>
+  </nav>
+</header>
+
+<main class="container">
+  <section class="card">
+    <div class="card-inner">
+      <div class="grid">
+        <div>
+          <h3 class="h3">우리의 작은 기록장</h3>
+          <p class="sub">
+            기운 얻고 싶을 때 한번씩 들려<br>
+            같이 가꾸어 나가자
+          </p>
+
+          <div>
+            <img class="thumb" src="../images/제주.jpg" alt="제주">
+          </div>
+          <hr class="soft" />
+
+          <a class="btn btn-primary" href="Crossroads.html">갈림길 보기 →</a>
+          <a class="btn" href="Our%20Shelter.html">서로의 치어리더 →</a>
+          <a class="btn" href="./letter.html">편지 읽기→</a>
+        </div>
+
+        <aside class="card" style="box-shadow:none;">
+          <div class="card-inner">
+
+            <div class="pill" style="width:100%; justify-content:space-between;">
+              <span id="dLabel">D+</span><strong id="dValue">-</strong>
+            </div>
+
+            <hr class="soft" />
+
+            <br>
+            <div>
+              <img class="thumb" src="../images/코타키나발루.jpg" alt="코타키나발루">
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+<script>
+  const START_DATE = "2020-08-12";
+
+  function calcDPlus(startDateStr){
+    const [y,m,d] = startDateStr.split("-").map(Number);
+
+    const start = new Date(y, m-1, d);
+    const today = new Date();
+    const today0 = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+    const diffMs = today0 - start;
+    const days = Math.floor(diffMs / (1000 * 60 * 60 * 24)) + 1;
+
+    if (days >= 0) return `D+${days}`;
+    return `D${days}`; // 아직 시작 전이면 D- 형태로 나옴 (예: D-3)
+  }
+
+  document.getElementById("dValue").textContent = calcDPlus(START_DATE);
+  document.getElementById("dLabel").textContent = "함께한 지";
+</script>
+</body>
+</html>
